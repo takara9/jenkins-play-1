@@ -23,7 +23,7 @@ pipeline {
 	stage('Push image') {
 	    steps {
 		script {
-		    docker.withRegistry("") {
+		    docker.withRegistry("https://hub.docker.com/repository/docker/maho/myweb","dockerhub") {
 			dockerImage.push()
 		    }
 		}
