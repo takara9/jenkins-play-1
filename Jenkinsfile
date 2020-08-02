@@ -32,8 +32,7 @@ pipeline {
 	stage('Deploy App') {
 	    steps {
 		script {
-                   sh 'pwd'
-		   sh 'kubectl --help'
+                   sh 'env'
 		   //kubernetesDeploy(configs: "myweb.yaml", kubeconfigId: "mykubeconfig")
 		}
 	    }
