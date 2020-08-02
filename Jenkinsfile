@@ -33,6 +33,7 @@ pipeline {
 	    steps {
 		script {
                    sh 'pwd'
+		   sh 'kubectl --help'
 		   //kubernetesDeploy(configs: "myweb.yaml", kubeconfigId: "mykubeconfig")
 		}
 	    }
