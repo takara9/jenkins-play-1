@@ -1,4 +1,8 @@
 pipeline {
+    //
+    //  Jenkinsサーバーにdocker, kubectl コマンドが導入されていること
+    //  プラグイン kubernetes-cd は使用しない。
+    //  プラグイン Blue Ocean、docker-build-step が必須
     environment {
 	registry = "docker.io/maho/myweb"
 	dockerImage = ""
@@ -8,20 +12,19 @@ pipeline {
     agent any
 
     stages {
-	
-	stage('Checkout Source') {
+	stage('GiHubからソースコードのクローン') {
 	    steps {
 		git 'https://github.com/takara9/jenkins-play-1'
 	    }
 	}
-	stage('Build image') {
+	stage('コンテナイメージのビルド') {
 	    steps {
 		script {
 		    dockerImage = docker.build registry + ":$BUILD_NUMBER"
 		}
 	    }
 	}
-	stage('Push image') {
+	stage('コンテナレジストリへプッシュ') {
 	    steps {
 		script {
 		    docker.withRegistry("https://index.docker.io/v1/","dockerhub") {
@@ -30,7 +33,7 @@ pipeline {
 		}
 	    }
 	}
-	stage('Deploy App') {
+	stage('K8sクラスタへのデプロイ') {
 	    steps {
 		script {
                    //sh 'echo $KUBECONFIG'
