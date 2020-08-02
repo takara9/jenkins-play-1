@@ -33,8 +33,9 @@ pipeline {
 	stage('Deploy App') {
 	    steps {
 		script {
-                   sh 'echo $KUBECONFIG'
-		   sh 'kubectl get node --kubeconfig $KUBECONFIG'
+                   //sh 'echo $KUBECONFIG'
+		   sh 'kubectl cluster-info --kubeconfig $KUBECONFIG'
+		   sh 'sed s/__BUILDNUMBER__/$BUILD_NUMBER/ myweb.yaml'
 		   sh 'kubectl apply -f myweb.yaml --kubeconfig $KUBECONFIG'
 		   //kubernetesDeploy(configs: "myweb.yaml", kubeconfigId: "mykubeconfig")
 		}
