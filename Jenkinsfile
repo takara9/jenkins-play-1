@@ -32,9 +32,8 @@ pipeline {
 	stage('Deploy App') {
 	    steps {
 		script {
-		   sh `pwd`
-		   sh `date`
-		   #kubernetesDeploy(configs: "myweb.yaml", kubeconfigId: "mykubeconfig")
+                   sh 'pwd'
+		   //kubernetesDeploy(configs: "myweb.yaml", kubeconfigId: "mykubeconfig")
 		}
 	    }
 	}
