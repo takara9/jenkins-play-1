@@ -34,7 +34,7 @@ pipeline {
 	    steps {
 		script {
                    sh 'echo $KUBECONFIG'
-		   //sh 'kubectl get node --kubeconfig 
+		   sh 'kubectl get node --kubeconfig $KUBECONFIG'
 		   //kubernetesDeploy(configs: "myweb.yaml", kubeconfigId: "mykubeconfig")
 		}
 	    }
