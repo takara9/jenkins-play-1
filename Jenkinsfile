@@ -2,6 +2,7 @@ pipeline {
     environment {
 	registry = "docker.io/maho/myweb"
 	dockerImage = ""
+	KUBECONFIG = credentials('kubeconfig')
     }
     
     agent any
@@ -32,7 +33,8 @@ pipeline {
 	stage('Deploy App') {
 	    steps {
 		script {
-                   sh 'env'
+                   sh 'echo $KUBECONFIG'
+		   //sh 'kubectl get node --kubeconfig 
 		   //kubernetesDeploy(configs: "myweb.yaml", kubeconfigId: "mykubeconfig")
 		}
 	    }
