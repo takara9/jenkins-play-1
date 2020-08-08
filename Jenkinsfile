@@ -4,7 +4,7 @@ pipeline {
     //  プラグイン kubernetes-cd は使用しない。
     //  プラグイン Blue Ocean、docker-build-step が必須
     environment {
-	registry = "docker.io/maho/myweb"
+	registry = "harbor.labs.local/library/myweb"
 	dockerImage = ""
 	KUBECONFIG = credentials('kubeconfig')
     }
@@ -27,7 +27,7 @@ pipeline {
 	stage('コンテナレジストリへプッシュ') {
 	    steps {
 		script {
-		    docker.withRegistry("https://index.docker.io/v1/","dockerhub") {
+		    docker.withRegistry("https://harbor.labs.local/v1/","harborproj1") {
 			dockerImage.push()
 		    }
 		}
