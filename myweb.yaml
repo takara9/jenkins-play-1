@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: web-server
-        image: maho/myweb:__BUILDNUMBER__
+        image: harbor.labs.local/library/myweb:__BUILDNUMBER__
 ---
 apiVersion: v1
 kind: Service
